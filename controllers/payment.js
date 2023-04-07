@@ -57,7 +57,7 @@ class Payment {
     });
     user.subscription.status = "active";
     await user.save();
-    res.redirect(`${process.env.CLIENT_URL}/paymentsuccess`);
+    res.redirect(`${process.env.CLIENT_URL}/paymentsuccess?reference=${razorpay_payment_id}`);
   });
 
   static getKeyId = AsyncError(async (req, res, next) => {
