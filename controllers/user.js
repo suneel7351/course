@@ -64,7 +64,12 @@ class User {
   static logout = AsyncError(async (req, res, next) => {
     res
       .status(200)
-      .clearCookie("token")
+      .cookie("token", null, {
+        httpOnly: true,
+        expires: new Date(Date.now()),
+        secure: true,
+        sameSite: "none",
+      })
       .json({ success: true, message: "Logged out successfully." });
   });
 
