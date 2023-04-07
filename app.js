@@ -11,7 +11,7 @@ import cors from "cors";
 config({ path: "./config/.env" });
 connection();
 const app = express();
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -19,7 +19,7 @@ app.use(
     extended: true,
   })
 );
-app.use(cookieParser());
+
 app.use(
   cors({
     credentials: true,

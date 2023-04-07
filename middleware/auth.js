@@ -5,7 +5,7 @@ import UserModel from "../models/user.js";
 const Auth = {
   isLoggedIn: AsyncError(async (req, res, next) => {
     const { token } = req.cookies;
-
+   
     if (!token) return next(new ErrorHandler("Login to continue", 400));
 
     const data = jsonwebtoken.verify(token, process.env.JWT_SECRET);

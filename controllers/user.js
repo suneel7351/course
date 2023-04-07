@@ -44,7 +44,6 @@ class User {
 
   static login = AsyncError(async (req, res, next) => {
     const { email, password } = req.body;
-
     if (!email || !password)
       return next(new ErrorHandler("Email and Password are required."));
 
@@ -287,11 +286,17 @@ export default User;
 
 UserModel.watch().on("change", async () => {
   const stats = await StatsModel.find({}).sort({ createdAt: "desc" }).limit(1);
-  const subscriptions = await UserModel.find({
+
+  if (stats.length < 1) {
+    // handle case where no stats document exists
+    return;
+  }
+
+  const subscription = await UserModel.find({
     "subscription.status": "active",
   });
 
-  stats[0].subscriptions = subscriptions.length;
+  stats[0].subscriptions = subscription.length;
   stats[0].users = await UserModel.countDocuments();
   stats[0].createdAt = new Date(Date.now());
 

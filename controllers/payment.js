@@ -7,6 +7,7 @@ import PaymentModel from "../models/payment.js";
 class Payment {
   static createSubscription = AsyncError(async (req, res, next) => {
     let user = await UserModel.findById(req.user._id);
+  
     if (user.role === "admin") {
       return next(
         new ErrorHandler(
