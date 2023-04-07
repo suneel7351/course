@@ -1,7 +1,9 @@
 const sendToken = (res, status, message, token) => {
   const options = {
     httpOnly: true,
-    maxAge: process.env.COOKIE_MAX_AGE * 24 * 60 * 60 * 1000,
+    expires: new Date(
+      Date.now() + process.env.COOKIE_MAX_AGE * 24 * 60 * 60 * 1000
+    ),
     secure: true,
     sameSite: "none",
   };

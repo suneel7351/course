@@ -6,7 +6,7 @@ const userRouter = Router();
 
 userRouter.route("/register").post(multer, User.register);
 userRouter.route("/login").post(User.login);
-userRouter.route("/logout").post(User.logout);
+userRouter.route("/logout").get(User.logout);
 userRouter.route("/me").get(auth.isLoggedIn, User.getMyProfile);
 userRouter.route("/changepassword").put(auth.isLoggedIn, User.changePassword);
 userRouter.route("/updateprofile").put(auth.isLoggedIn, User.updateProfile);

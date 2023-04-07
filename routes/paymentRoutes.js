@@ -5,7 +5,7 @@ const paymentRouter = Router();
 
 paymentRouter
   .route("/subscribe")
-  .post(Auth.isLoggedIn, Payment.createSubscription);
+  .get(Auth.isLoggedIn, Payment.createSubscription);
 paymentRouter.route("/verify").post(Auth.isLoggedIn, Payment.verification);
 paymentRouter.route("/getkeyid").get(Payment.getKeyId);
 paymentRouter
