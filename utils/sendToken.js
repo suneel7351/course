@@ -1,4 +1,13 @@
-const sendToken = (res, status, message, token) => {
+const sendToken = (res, status, message, token, user) => {
+  user = {
+    avatar: user.avatar,
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    createdAt: user.createdAt,
+    playlist: user.playlist,
+  };
   const options = {
     httpOnly: true,
     expires: new Date(
@@ -11,6 +20,6 @@ const sendToken = (res, status, message, token) => {
   res
     .status(status)
     .cookie("token", token, options)
-    .json({ success: true, message });
+    .json({ success: true, message, user });
 };
 export default sendToken;

@@ -36,7 +36,7 @@ class User {
     await user.save();
 
     const token = await user.getAuthToken();
-    sendToken(res, 201, "User registered successfully", token);
+    sendToken(res, 201, "User registered successfully", token, user);
   });
   // -------------------------------------->User Register End------------------------------------------>
 
@@ -54,7 +54,7 @@ class User {
 
     if (!isMatch) return next(new ErrorHandler("Incorrect Email or Password"));
     const token = await user.getAuthToken();
-    sendToken(res, 200, "Logged in successfully.", token);
+    sendToken(res, 200, "Logged in successfully.", token, user);
   });
 
   // -------------------------------------->User Login End-------------------------------------------->
