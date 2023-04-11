@@ -18,6 +18,12 @@ class Course {
 
     res.status(200).json({ success: true, courses });
   });
+  // Get All Courses(admin)
+  static getAllCoursesDetails = AsyncError(async (req, res, next) => {
+    const courses = await CourseModel.find({});
+
+    res.status(200).json({ success: true, courses });
+  });
 
   // Create Course(------------->Admin<-----------------------)
 

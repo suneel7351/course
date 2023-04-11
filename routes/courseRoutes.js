@@ -16,4 +16,7 @@ courseRouter
 courseRouter
   .route("/lecture")
   .delete(Auth.isLoggedIn, Auth.isAdmin, Course.deleteLecture);
+courseRouter
+  .route("/admin/courses")
+  .get(Auth.isLoggedIn, Auth.isAdmin, Course.getAllCoursesDetails);
 export default courseRouter;
