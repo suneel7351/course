@@ -139,18 +139,18 @@ class Course {
 
 export default Course;
 
-CourseModel.watch().on("change", async () => {
-  const stats = await StatsModel.find({}).sort({ createdAt: "desc" }).limit(1);
-  const courses = await CourseModel.find({});
+// CourseModel.watch().on("change", async () => {
+//   const stats = await StatsModel.find({}).sort({ createdAt: "desc" }).limit(1);
+//   const courses = await CourseModel.find({});
 
-  let totalViews = 0;
-  for (let index = 0; index < courses.length; index++) {
-    totalViews += courses[index].views;
-  }
+//   let totalViews = 0;
+//   for (let index = 0; index < courses.length; index++) {
+//     totalViews += courses[index].views;
+//   }
 
-  stats[0].views = totalViews;
+//   stats[0].views = totalViews;
 
-  stats[0].createdAt = new Date(Date.now());
+//   stats[0].createdAt = new Date(Date.now());
 
-  stats[0].save();
-});
+//   stats[0].save();
+// });

@@ -289,21 +289,21 @@ class User {
 
 export default User;
 
-UserModel.watch().on("change", async () => {
-  const stats = await StatsModel.find({}).sort({ createdAt: "desc" }).limit(1);
+// UserModel.watch().on("change", async () => {
+//   const stats = await StatsModel.find({}).sort({ createdAt: "desc" }).limit(1);
 
-  if (stats.length < 1) {
-    // handle case where no stats document exists
-    return;
-  }
+//   if (stats.length < 1) {
+//     // handle case where no stats document exists
+//     return;
+//   }
 
-  const subscription = await UserModel.find({
-    "subscription.status": "active",
-  });
+//   const subscription = await UserModel.find({
+//     "subscription.status": "active",
+//   });
 
-  stats[0].subscriptions = subscription.length;
-  stats[0].users = await UserModel.countDocuments();
-  stats[0].createdAt = new Date(Date.now());
+//   stats[0].subscriptions = subscription.length;
+//   stats[0].users = await UserModel.countDocuments();
+//   stats[0].createdAt = new Date(Date.now());
 
-  await stats[0].save();
-});
+//   await stats[0].save();
+// });
